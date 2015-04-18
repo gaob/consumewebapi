@@ -222,7 +222,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DynamicJsonDeserializer.cs" />
+    <Compile Include="Helper\IPatientDataRestClient.cs" />
     <Compile Include="Helper\IServerDataRestClient.cs" />
+    <Compile Include="Helper\PatientDataRestClient.cs" />
     <Compile Include="Helper\ServerDataRestClient.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\PatientDataModel.cs" />
