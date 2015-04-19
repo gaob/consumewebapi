@@ -18,13 +18,15 @@ namespace ConsumeWebAPI.Controllers
         public ActionResult Index()
         {
             //Dummy data.
+            /*
             List<PatientDataModel> aList = new List<PatientDataModel>();
 
             aList.Add(new PatientDataModel());
 
             return View(aList);
+            */
 
-            //return View(RestClient.GetAll());
+            return View(RestClient.GetAll());
         }
 
         //

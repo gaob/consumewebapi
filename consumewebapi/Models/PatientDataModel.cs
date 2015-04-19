@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace ConsumeWebAPI.Models
 {
@@ -45,8 +46,8 @@ namespace ConsumeWebAPI.Models
             Id = id;
             DoctorID = d_id;
             Name = name;
-            StartDate = DateTime.Parse(start);
-            EndDate = DateTime.Parse(end);
+            StartDate = DateTime.ParseExact(start, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            EndDate = DateTime.ParseExact(start, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             Type = type;
             Time = DateTime.Parse(time);
             RecordID = r_id;

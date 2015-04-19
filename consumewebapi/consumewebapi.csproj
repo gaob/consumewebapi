@@ -292,6 +292,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config" />
+    <None Include="Properties\PublishProfiles\consumewebapi2.pubxml" />
     <None Include="Properties\PublishProfiles\doctor-consumewebapi.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

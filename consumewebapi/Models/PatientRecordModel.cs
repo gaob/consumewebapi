@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -14,7 +15,7 @@ namespace ConsumeWebAPI.Models
         public PatientRecordModel(string id, string date, string time, int the_value)
         {
             Id = id;
-            Time = DateTime.Parse(date + " " + time);
+            Time = DateTime.ParseExact(date + " " + time, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture); ;
             value = the_value;
         }
 

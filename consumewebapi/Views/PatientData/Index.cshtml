@@ -16,10 +16,6 @@
         @Html.ActionLink("Create a New Request", "Create", null, new { @class = "actionlinkbutton" })
     </p>
 
-    <p>
-        <img src="PatientData/ChartArrayBasic"/>
-    </p>
-
     <div>
         <table>
 
@@ -55,28 +51,28 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayNameFor(model => model.DoctorID)
+                        @Html.DisplayFor(model => item.DoctorID)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Name)
+                        @Html.DisplayFor(model => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.StartDate)
+                        @Html.DisplayFor(model => item.StartDate)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.EndDate)
+                        @Html.DisplayFor(model => item.EndDate)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Type)
+                        @Html.DisplayFor(model => item.Type)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Time)
+                        @Html.DisplayFor(model => item.Time)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.RecordID)
+                        @Html.DisplayFor(model => item.RecordID)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.RecordName)
+                        @Html.DisplayFor(model => item.RecordName)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

@@ -12,8 +12,8 @@ namespace ConsumeWebAPI.Helper
     public class PatientDataRestClient : IPatientDataRestClient
     {
         private readonly RestClient _client;
-        private readonly string _url = "http://crudwithwebapi.azurewebsites.net/";
-        string patient_id = "20000001";
+        private readonly string _url = "http://ec2-54-149-114-200.us-west-2.compute.amazonaws.com:8080/IMHSystem/";
+        string patient_id = "01";
 
         public PatientDataRestClient()
         {
@@ -23,7 +23,7 @@ namespace ConsumeWebAPI.Helper
 
         public IEnumerable<PatientDataModel> GetAll()
         {
-            var request = new RestRequest("api/patient/requests/" + patient_id, Method.GET) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest("api/patient/requests/list/" + patient_id, Method.GET) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("start", "2015-04-17");
 
             var response = _client.Execute<dynamic>(request);
@@ -38,7 +38,7 @@ namespace ConsumeWebAPI.Helper
 
             foreach (var item in notifications)
             {
-                aList.Add(new PatientDataModel((string)item.Id, (string)item.DoctorID, (string)item.Name, (string)item.Start, (string)item.End,
+                aList.Add(new PatientDataModel((string)item.Id, (string)item.DoctorId, (string)item.Name, (string)item.Start, (string)item.End,
                                                (string)item.Type, (string)item.Time, (string)item.RecordID, (string)item.RecordName));
             }
 
@@ -66,7 +66,7 @@ namespace ConsumeWebAPI.Helper
 
         public IEnumerable<PatientRecordModel> GetRecords()
         {
-            string RecordID = "03";
+            string RecordID = "01";
 
             var request = new RestRequest("api/patient/records/list/" + patient_id + "/" + RecordID, Method.GET) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("start", "2015-04-10");
@@ -84,7 +84,7 @@ namespace ConsumeWebAPI.Helper
 
             foreach (var item in records)
             {
-                aList.Add(new PatientRecordModel((string)item.Id, (string)item.date, (string)item.time, (int)item.value));
+                aList.Add(new PatientRecordModel((string)item.Id, (string)item.Date, (string)item.Time, (int)item.Value));
             }
 
             return aList;
