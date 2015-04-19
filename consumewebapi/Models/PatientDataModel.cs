@@ -8,7 +8,7 @@ namespace ConsumeWebAPI.Models
 {
     public class PatientDataModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Display(Name = "Doctor ID")]
         public string DoctorID { get; set; }
@@ -39,5 +39,23 @@ namespace ConsumeWebAPI.Models
 
         [Display(Name = "Record Name")]
         public string RecordName { get; set; }
+
+        public PatientDataModel(string id, string d_id, string name, string start, string end, string type, string time, string r_id, string r_name)
+        {
+            Id = id;
+            DoctorID = d_id;
+            Name = name;
+            StartDate = DateTime.Parse(start);
+            EndDate = DateTime.Parse(end);
+            Type = type;
+            Time = DateTime.Parse(time);
+            RecordID = r_id;
+            RecordName = r_name;
+        }
+
+        public PatientDataModel()
+        {
+
+        }
     }
 }

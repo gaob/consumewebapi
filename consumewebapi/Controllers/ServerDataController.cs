@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using ConsumeWebAPI.Helper;
 using ConsumeWebAPI.Models;
+using System.Web.Helpers;
+using System.Collections;
 
 namespace ConsumeWebAPI.Controllers
 {
@@ -98,6 +100,33 @@ namespace ConsumeWebAPI.Controllers
             {
                 return View();
             }
+        }
+
+        //To be removed.
+        public ActionResult ChartArrayBasic()
+        {
+            var result = RestClient.GetAll();
+
+            ArrayList x_Array = new ArrayList();
+            ArrayList y_Array = new ArrayList();
+
+            foreach (var item in result)
+            {
+                x_Array.Add(item.InitialDate.ToShortDateString());
+                y_Array.Add(item.OrderNumber.ToString());
+            }
+
+            new Chart(600, 400, ChartTheme.Vanilla)
+                .AddTitle("Blood Glucose")
+                .AddSeries(
+                    chartType: "Line",
+                    xField: "Date",
+                    markerStep: 1,
+                    xValue: x_Array,
+                    yValues: y_Array)
+                .Write();
+
+            return null;
         }
     }
 }

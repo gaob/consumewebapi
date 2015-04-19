@@ -16,15 +16,15 @@ namespace ConsumeWebAPI.Helper
         public ServerDataRestClient()
         {
             _client = new RestClient(_url);
-            _client.AddHandler("application/json", new DynamicJsonDeserializer());
         }
 
         public IEnumerable<ServerDataModel> GetAll()
         {
             var request = new RestRequest("api/serverdata", Method.GET) {RequestFormat = DataFormat.Json};
 
-            //var response = _client.Execute<List<ServerDataModel>>(request);
+            var response = _client.Execute<List<ServerDataModel>>(request);
 
+            /*
             var response = _client.Execute<dynamic>(request);
 
             dynamic user = response.Data;
@@ -33,6 +33,7 @@ namespace ConsumeWebAPI.Helper
             {
                 int id = item.Id;
             }
+            */
 
             if (response.Data == null)
                 throw new Exception(response.ErrorMessage);

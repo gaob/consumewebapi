@@ -5,6 +5,7 @@ using System.Web;
 using ConsumeWebAPI.Models;
 using RestSharp;
 using System.Net;
+using RestSharp.Deserializers;
 
 namespace ConsumeWebAPI.Helper
 {
@@ -16,13 +17,21 @@ namespace ConsumeWebAPI.Helper
         public PatientDataRestClient()
         {
             _client = new RestClient(_url);
+            _client.AddHandler("application/json", new DynamicJsonDeserializer());
         }
 
         public IEnumerable<PatientDataModel> GetAll()
         {
-            var request = new RestRequest("api/serverdata", Method.GET) { RequestFormat = DataFormat.Json };
+            string patient_id = "20000001";
 
-            var response = _client.Execute<List<PatientDataModel>>(request);
+            var request = new RestRequest("api/patient/requests/" + patient_id, Method.GET) { RequestFormat = DataFormat.Json };
+            request.AddUrlSegment("start", "2015-04-17");
+
+            var response = _client.Execute<dynamic>(request);
+
+            dynamic data = response.Data;
+
+            int totalNotifications = data.totalNotifications;
 
             if (response.Data == null)
                 throw new Exception(response.ErrorMessage);
@@ -35,11 +44,12 @@ namespace ConsumeWebAPI.Helper
             var request = new RestRequest("api/serverdata", Method.POST) { RequestFormat = DataFormat.Json };
             request.AddBody(serverData);
 
+            /*
             var response = _client.Execute<PatientDataModel>(request);
 
             if (response.StatusCode != HttpStatusCode.Created)
                 throw new Exception(response.ErrorMessage);
-
+            */
         }
     }
 }
