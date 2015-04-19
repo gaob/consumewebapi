@@ -13,6 +13,7 @@ namespace ConsumeWebAPI.Helper
     {
         private readonly RestClient _client;
         private readonly string _url = "http://crudwithwebapi.azurewebsites.net/";
+        string patient_id = "20000001";
 
         public PatientDataRestClient()
         {
@@ -22,8 +23,6 @@ namespace ConsumeWebAPI.Helper
 
         public IEnumerable<PatientDataModel> GetAll()
         {
-            string patient_id = "20000001";
-
             var request = new RestRequest("api/patient/requests/" + patient_id, Method.GET) { RequestFormat = DataFormat.Json };
             request.AddUrlSegment("start", "2015-04-17");
 
@@ -46,17 +45,23 @@ namespace ConsumeWebAPI.Helper
             return aList;
         }
 
-        public void Add(PatientDataModel serverData)
+        public void Add(PatientDataModel theModel)
         {
-            var request = new RestRequest("api/serverdata", Method.POST) { RequestFormat = DataFormat.Json };
-            request.AddBody(serverData);
+            var request = new RestRequest("api/patient/requests/submit/" + patient_id, Method.POST) { RequestFormat = DataFormat.Json };
 
-            /*
-            var response = _client.Execute<PatientDataModel>(request);
+            request.AddParameter("DoctorID", theModel.DoctorID);
+            request.AddParameter("Name", theModel.Name);
+            request.AddParameter("Start", theModel.StartDate.ToShortDateString());
+            request.AddParameter("End", theModel.EndDate.ToShortDateString());
+            request.AddParameter("Type", theModel.Type);
+            request.AddParameter("Time", theModel.Time.ToShortTimeString());
+            request.AddParameter("RecordID", theModel.RecordID);
+            request.AddParameter("RecordName", theModel.RecordName);
+
+            var response = _client.Execute(request);
 
             if (response.StatusCode != HttpStatusCode.Created)
                 throw new Exception(response.ErrorMessage);
-            */
         }
     }
 }

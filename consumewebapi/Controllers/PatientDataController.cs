@@ -47,12 +47,11 @@ namespace ConsumeWebAPI.Controllers
         // POST: /PatientData/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(PatientDataModel theModel)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                RestClient.Add(theModel);
                 return RedirectToAction("Index");
             }
             catch
