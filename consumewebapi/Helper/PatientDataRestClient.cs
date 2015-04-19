@@ -31,12 +31,19 @@ namespace ConsumeWebAPI.Helper
 
             dynamic data = response.Data;
 
-            int totalNotifications = data.totalNotifications;
+            int totalNotifications = data.TotalNotifications;
 
-            if (response.Data == null)
-                throw new Exception(response.ErrorMessage);
+            var notifications = data.Notifications;
 
-            return response.Data;
+            List<PatientDataModel> aList = new List<PatientDataModel>();
+
+            foreach (var item in notifications)
+            {
+                aList.Add(new PatientDataModel((string)item.Id, (string)item.DoctorID, (string)item.Name, (string)item.Start, (string)item.End,
+                                               (string)item.Type, (string)item.Time, (string)item.RecordID, (string)item.RecordName));
+            }
+
+            return aList;
         }
 
         public void Add(PatientDataModel serverData)

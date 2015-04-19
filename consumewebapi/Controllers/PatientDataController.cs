@@ -116,9 +116,6 @@ namespace ConsumeWebAPI.Controllers
         //To be removed
         public ActionResult ChartArrayBasic()
         {
-            var model = new ChartModel();
-            var data = model.GetChartData();
-
             new Chart(600, 400, ChartTheme.Vanilla)
                 .AddTitle("Blood Glucose")
                 .AddSeries(
