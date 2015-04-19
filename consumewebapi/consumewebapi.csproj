@@ -228,7 +228,6 @@
     <Compile Include="Helper\PatientDataRestClient.cs" />
     <Compile Include="Helper\ServerDataRestClient.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\ChartModel.cs" />
     <Compile Include="Models\PatientDataModel.cs" />
     <Compile Include="Models\ServerDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
