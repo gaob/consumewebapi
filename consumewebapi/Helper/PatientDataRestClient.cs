@@ -63,5 +63,31 @@ namespace ConsumeWebAPI.Helper
             if (response.StatusCode != HttpStatusCode.Created)
                 throw new Exception(response.ErrorMessage);
         }
+
+        public IEnumerable<PatientRecordModel> GetRecords()
+        {
+            string RecordID = "03";
+
+            var request = new RestRequest("api/patient/records/list/" + patient_id + "/" + RecordID, Method.GET) { RequestFormat = DataFormat.Json };
+            request.AddUrlSegment("start", "2015-04-10");
+            request.AddUrlSegment("end", "2015-04-16");
+
+            var response = _client.Execute<dynamic>(request);
+
+            dynamic data = response.Data;
+
+            int total = data.TotalRecords;
+
+            var records = data.Records;
+
+            List<PatientRecordModel> aList = new List<PatientRecordModel>();
+
+            foreach (var item in records)
+            {
+                aList.Add(new PatientRecordModel((string)item.Id, (string)item.date, (string)item.time, (int)item.value));
+            }
+
+            return aList;
+        }
     }
 }

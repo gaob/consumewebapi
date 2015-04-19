@@ -5,11 +5,14 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using ConsumeWebAPI.Models;
+using ConsumeWebAPI.Helper;
+using System.Collections;
 
 namespace ConsumeWebAPI.Controllers
 {
     public class PatientRecordController : Controller
     {
+        static readonly IPatientDataRestClient RestClient = new PatientDataRestClient();
         //
         // GET: /PatientRecord/
 
@@ -110,14 +113,25 @@ namespace ConsumeWebAPI.Controllers
 
         public ActionResult ChartArrayBasic()
         {
+            var result = RestClient.GetRecords();
+
+            ArrayList x_Array = new ArrayList();
+            ArrayList y_Array = new ArrayList();
+
+            foreach (var item in result)
+            {
+                x_Array.Add(item.Time.ToShortDateString());
+                y_Array.Add(item.value.ToString());
+            }
+
             new Chart(600, 400, ChartTheme.Vanilla)
                 .AddTitle("Blood Glucose")
                 .AddSeries(
                     chartType: "Line",
                     xField: "Date",
                     markerStep: 1,
-                    xValue: new[] { "2015-04-10", "2015-04-11", "2015-04-12", "2015-04-13", "2015-04-14", "2015-04-15", "2015-04-16" },
-                    yValues: new[] { "120", "122", "121", "123", "125", "130", "129" })
+                    xValue: x_Array,
+                    yValues: y_Array)
                 .Write();
 
             return null;

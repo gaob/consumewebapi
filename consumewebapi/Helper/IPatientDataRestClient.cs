@@ -10,5 +10,6 @@ namespace ConsumeWebAPI.Helper
     {
         void Add(PatientDataModel serverDataModel);
         IEnumerable<PatientDataModel> GetAll();
+        IEnumerable<PatientRecordModel> GetRecords();
     }
 }

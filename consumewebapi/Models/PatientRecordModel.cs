@@ -10,5 +10,17 @@ namespace ConsumeWebAPI.Models
         public string Id { get; set; }
         public DateTime Time { get; set; }
         public int value { get; set; }
+
+        public PatientRecordModel(string id, string date, string time, int the_value)
+        {
+            Id = id;
+            Time = DateTime.Parse(date + " " + time);
+            value = the_value;
+        }
+
+        public PatientRecordModel()
+        {
+
+        }
     }
 }
