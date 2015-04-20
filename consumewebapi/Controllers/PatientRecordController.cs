@@ -125,7 +125,7 @@ namespace ConsumeWebAPI.Controllers
             }
 
             new Chart(600, 400, ChartTheme.Vanilla)
-                .AddTitle("Blood Pressure")
+                .AddTitle("Blood Glucose")
                 .AddSeries(
                     chartType: "Line",
                     xField: "Date",

@@ -61,8 +61,8 @@ namespace ConsumeWebAPI.Models
         {
             DoctorID = "10000001";
             Type = "DAILY";
-            RecordID = "01";
-            RecordName = "blood pressure";
+            RecordID = "03";
+            RecordName = "Blood Glucose";
         }
     }
 }

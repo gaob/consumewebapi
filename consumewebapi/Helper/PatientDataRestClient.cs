@@ -49,18 +49,21 @@ namespace ConsumeWebAPI.Helper
         {
             var request = new RestRequest("api/patient/requests/submit/" + patient_id, Method.POST) { RequestFormat = DataFormat.Json };
 
-            request.AddParameter("DoctorID", theModel.DoctorID);
-            request.AddParameter("Name", theModel.Name);
-            request.AddParameter("Start", theModel.StartDate.ToShortDateString());
-            request.AddParameter("End", theModel.EndDate.ToShortDateString());
-            request.AddParameter("Type", theModel.Type);
-            request.AddParameter("Time", theModel.Time.ToShortTimeString());
-            request.AddParameter("RecordID", theModel.RecordID);
-            request.AddParameter("RecordName", theModel.RecordName);
+            request.AddBody(new
+            {
+                DoctorID = theModel.DoctorID,
+                Name = theModel.Name,
+                Start = theModel.StartDate.ToShortDateString(),
+                End = theModel.EndDate.ToShortDateString(),
+                Type = theModel.Type,
+                Time = theModel.Time.ToShortTimeString(),
+                RecordID = theModel.RecordID,
+                RecordName = theModel.RecordName
+            });
 
             var response = _client.Execute(request);
 
-            if (response.StatusCode != HttpStatusCode.Created)
+            if (response.StatusCode != HttpStatusCode.OK)
                 throw new Exception(response.ErrorMessage);
         }
 
