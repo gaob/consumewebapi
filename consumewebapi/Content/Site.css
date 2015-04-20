@@ -306,12 +306,12 @@ ol.round {
 /* content */
 article {
     float: left;
-    width: 70%;
+    width: 85%;
 }
 
 aside {
     float: right;
-    width: 25%;
+    width: 15%;
 }
 
     aside ul {
