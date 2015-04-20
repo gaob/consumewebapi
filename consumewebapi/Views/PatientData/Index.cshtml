@@ -8,9 +8,6 @@
 <h2>Doctor Requests</h2>
 
 <article>
-    <p>
-        Here you can manipulate doctor requests.
-    </p>
 
     <p>
         @Html.ActionLink("Create a New Request", "Create", null, new { @class = "actionlinkbutton" })
@@ -74,11 +71,6 @@
                     <td>
                         @Html.DisplayFor(model => item.RecordName)
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
                 </tr>
             }
 
@@ -87,13 +79,9 @@
 </article>
 
 <aside>
-    <h3>Patient</h3>
-    <p>
-        Information:
-    </p>
+    <h3>Patient Information</h3>
     <ul>
         <li>Name: John Smith</li>
-        <li>ID: 01</li>
-        <li>RecordID: 01</li>
+        <li>ID: 90000101</li>
     </ul>
 </aside>

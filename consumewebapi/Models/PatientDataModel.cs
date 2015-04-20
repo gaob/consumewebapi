@@ -14,7 +14,7 @@ namespace ConsumeWebAPI.Models
         [Display(Name = "Doctor ID")]
         public string DoctorID { get; set; }
 
-        [Display(Name = "Name")]
+        [Display(Name = "Request Name")]
         public string Name { get; set; }
 
         [Display(Name = "Start Date")]
@@ -27,7 +27,7 @@ namespace ConsumeWebAPI.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
-        [Display(Name = "Type")]
+        [Display(Name = "Frequency")]
         public string Type { get; set; }
 
         [Display(Name = "Time")]
@@ -47,7 +47,10 @@ namespace ConsumeWebAPI.Models
             DoctorID = d_id;
             Name = name;
             StartDate = DateTime.ParseExact(start, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            EndDate = DateTime.ParseExact(start, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            if (end != string.Empty)
+            {
+                EndDate = DateTime.ParseExact(end, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            }
             Type = type;
             Time = DateTime.Parse(time);
             RecordID = r_id;
@@ -56,7 +59,10 @@ namespace ConsumeWebAPI.Models
 
         public PatientDataModel()
         {
-
+            DoctorID = "10000001";
+            Type = "DAILY";
+            RecordID = "01";
+            RecordName = "blood pressure";
         }
     }
 }

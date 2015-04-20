@@ -8,9 +8,6 @@
 <h2>Doctor Request</h2>
 
 <article>
-    <p>
-        Here you can create a new doctor request.
-    </p>
 
     @using (Html.BeginForm())
     {
@@ -19,14 +16,6 @@
 
         <fieldset>
             <legend>ServerDataModel</legend>
-
-            <div class="label">
-                @Html.LabelFor(model => model.DoctorID)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.DoctorID)
-                @Html.ValidationMessageFor(model => model.DoctorID)
-            </div>
 
             <div class="label">
                 @Html.LabelFor(model => model.Name)
@@ -91,14 +80,10 @@
     }
 </article>
 <aside>
-    <h3>Patient</h3>
-    <p>
-        Information:
-    </p>
+    <h3>Patient Information</h3>
     <ul>
         <li>Name: John Smith</li>
-        <li>ID: 01</li>
-        <li>RecordID: 01</li>
+        <li>ID: 90000101</li>
     </ul>
 </aside>
 

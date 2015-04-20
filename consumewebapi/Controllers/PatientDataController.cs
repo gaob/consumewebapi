@@ -42,7 +42,7 @@ namespace ConsumeWebAPI.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View(new PatientDataModel());
         }
 
         //
