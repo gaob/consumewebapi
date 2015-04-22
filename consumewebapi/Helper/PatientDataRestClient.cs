@@ -38,7 +38,7 @@ namespace ConsumeWebAPI.Helper
 
             foreach (var item in notifications)
             {
-                aList.Add(new PatientDataModel((string)item.Id, (string)item.DoctorId, (string)item.Name, (string)item.Start, (string)item.End,
+                aList.Add(new PatientDataModel((string)item.Id, (string)item.DoctorId, (string)item.PatientID, (string)item.Name, (string)item.Start, (string)item.End,
                                                (string)item.Type, (string)item.Time, (string)item.RecordID, (string)item.RecordName));
             }
 
@@ -47,14 +47,15 @@ namespace ConsumeWebAPI.Helper
 
         public void Add(PatientDataModel theModel)
         {
-            var request = new RestRequest("api/patient/requests/submit/" + patient_id, Method.POST) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest("api/patient/requests/submit/" + theModel.PatientID, Method.POST) { RequestFormat = DataFormat.Json };
 
             request.AddBody(new
             {
                 DoctorID = theModel.DoctorID,
+                PatientID = theModel.PatientID,
                 Name = theModel.Name,
-                Start = theModel.StartDate.ToShortDateString(),
-                End = theModel.EndDate.ToShortDateString(),
+                Start = theModel.StartDate.ToString("yyyy-MM-dd"),
+                End = theModel.EndDate.ToString("yyyy-MM-dd"),
                 Type = theModel.Type,
                 Time = theModel.Time.ToShortTimeString(),
                 RecordID = theModel.RecordID,

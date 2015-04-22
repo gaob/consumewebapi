@@ -14,6 +14,9 @@ namespace ConsumeWebAPI.Models
         [Display(Name = "Doctor ID")]
         public string DoctorID { get; set; }
 
+        [Display(Name = "Patient ID")]
+        public string PatientID { get; set; }
+
         [Display(Name = "Request Name")]
         public string Name { get; set; }
 
@@ -41,10 +44,11 @@ namespace ConsumeWebAPI.Models
         [Display(Name = "Record Name")]
         public string RecordName { get; set; }
 
-        public PatientDataModel(string id, string d_id, string name, string start, string end, string type, string time, string r_id, string r_name)
+        public PatientDataModel(string id, string d_id, string p_id, string name, string start, string end, string type, string time, string r_id, string r_name)
         {
             Id = id;
             DoctorID = d_id;
+            PatientID = p_id;
             Name = name;
             StartDate = DateTime.ParseExact(start, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             if (end != string.Empty)
@@ -59,7 +63,8 @@ namespace ConsumeWebAPI.Models
 
         public PatientDataModel()
         {
-            DoctorID = "10000001";
+            DoctorID = "1000001";
+            PatientID = "2000001";
             Type = "DAILY";
             RecordID = "03";
             RecordName = "Blood Glucose";
